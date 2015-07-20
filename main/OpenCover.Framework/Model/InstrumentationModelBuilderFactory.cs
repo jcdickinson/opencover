@@ -29,7 +29,7 @@ namespace OpenCover.Framework.Model
 
         public IInstrumentationModelBuilder CreateModelBuilder(string modulePath, string moduleName)
         {
-            var manager = new CecilSymbolManager(_commandLine, _filter, _logger, _trackedMethodStrategyManager);
+            var manager = new MsilSymbolManager(_commandLine, _filter, _logger, _trackedMethodStrategyManager);
             manager.Initialise(modulePath, moduleName);
             return new InstrumentationModelBuilder(manager);
         }

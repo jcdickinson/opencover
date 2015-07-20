@@ -201,10 +201,12 @@ namespace OpenCover.Console
 
                 if (service.Status != ServiceControllerStatus.Stopped)
                 {
-                    logger.ErrorFormat(
-                        "The service '{0}' is already running. The profiler cannot attach to an already running service.",
-                    parser.Target);
-                    return;
+                    logger.InfoFormat("Service stopping '{0}'", parser.Target);
+                    service.WaitForStatus(ServiceControllerStatus.Stopped, parser.ServiceStartTimeout);
+                    //logger.ErrorFormat(
+                    //    "The service '{0}' is already running. The profiler cannot attach to an already running service.",
+                    //parser.Target);
+                    //return;
                 }
 
                 // now to set the environment variables
